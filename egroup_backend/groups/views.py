@@ -205,7 +205,7 @@ class AuthenticationUser(ObtainAuthToken):
                     u = User.objects.get(email=username)
                     # profile = Profile.objects.get(user=u)
                     
-                    print(u)
+                    # print(u)
                     # print(userFound)
                     return Response({"message":"success","user":{
                         'token': token.key,

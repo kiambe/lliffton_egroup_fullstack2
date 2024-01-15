@@ -29,3 +29,5 @@ def add_time(d="2023-01-04T09:00:00.999Z",hrs=None):
     
     return result_1
     
+
+print(add_time("2024-01-16T09:00:00.999Z",1))

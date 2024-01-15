@@ -4,8 +4,9 @@ import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import {
   getUserOffline,
   getUserTokenOffline,
+  logoutUser,
 } from "../../app-redux/features/appData/appDataSlice";
-import { getOfflineData } from "../../constants/OfflineStorage";
+import { getOfflineData, removeValueFromOffline } from "../../constants/OfflineStorage";
 
 const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
@@ -21,6 +22,17 @@ const AuthProvider = ({ children }) => {
 
   let { offlineUserToken } = appData;
   let { loginUserState } = appData;
+
+  const logout = () => {
+    setTimeout(() => {
+      removeValueFromOffline("@userData");
+      removeValueFromOffline("@isLoggedIn");
+      removeValueFromOffline("@isLoggedIn2");
+      removeValueFromOffline("@userData2");
+      navigate(`/login`, { replace: true });
+      dispatch(logoutUser());
+    }, 1000);
+  };
 
   useEffect(() => {
     // Get the user offline token
@@ -40,15 +52,27 @@ const AuthProvider = ({ children }) => {
                   if (res3.user.hasOwnProperty("expires")) {
                     let expires = res3.user.expires;
                     let date1 = new Date(expires);
+
+
+                    // console.log({date1})
+
   
                     const date2 = new Date();
+                    console.log({date2,date1})
+
   
-                    if (date2 < date1) {
-                      navigate(`/login`, { replace: true });
+                    if (date2 > date1) {
+                      logout()
+
+                      // navigate(`/login`, { replace: true });
+
                     } else {
+                      // console.log("zzzz")
                     }
                   } else {
-                    navigate(`/login`, { replace: true });
+                    logout()
+
+                    // navigate(`/login`, { replace: true });
                   }
                 }
                
