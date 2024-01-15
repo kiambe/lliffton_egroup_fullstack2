@@ -175,9 +175,9 @@ function Header() {
                   <li>
                     <a className="dropdown-item">
                       <div className="d-flex align-items-center">
-                        <div className="setting-icon">
+                        {/* <div className="setting-icon">
                           <i className="bi bi-lock-fill"></i>
-                        </div>
+                        </div> */}
                         <button onClick={logout} className="btn w-100">
                           <div className="setting-text ms-3">
                             <span>Logout</span>

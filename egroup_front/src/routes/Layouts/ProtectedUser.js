@@ -26,7 +26,7 @@ function ProtectedUser() {
         // pathname
         navigate(`${location.pathname}`, { replace: true });
       }
-      if (location.pathname !== "/") {
+      else if (location.pathname !== "/") {
         navigate(`/home`, { replace: true });
 
       }
