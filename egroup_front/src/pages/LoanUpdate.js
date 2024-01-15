@@ -3,8 +3,10 @@ import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
 import Footer from '../components/Footer';
 import { Link, useParams  } from 'react-router-dom';
-import axios from 'axios';
+// const axios = require("axios");
+
 import { API_URL, headers } from '../components/egroup.service';
+const axios = require("axios");
 
 
 function LoanUpdate() { 

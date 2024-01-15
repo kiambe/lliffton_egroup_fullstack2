@@ -4,8 +4,8 @@ import Sidebar from '../components/Sidebar';
 import Footer from '../components/Footer';
 
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import { API_URL, headers } from '../components/egroup.service';
+const axios = require("axios");
 
 function Home(){
 

@@ -3,8 +3,8 @@ import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
 import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 import {useState, useEffect} from 'react';
+const axios = require("axios");
 
 function AgripreneursList() { 
             const [members, setMembers] = useState([])

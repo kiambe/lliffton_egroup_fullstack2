@@ -3,11 +3,11 @@ import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
 import Footer from '../components/Footer';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 import {useState, useEffect} from 'react';
 import { API_URL, headers } from '../components/egroup.service';
 import { useNavigate } from "react-router-dom";
 
+const axios = require("axios");
 
 
 

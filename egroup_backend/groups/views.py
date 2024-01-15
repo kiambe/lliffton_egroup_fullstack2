@@ -6,13 +6,19 @@ from rest_framework import viewsets
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.db.models import Sum
+from datetime import datetime
 
 from django.http import JsonResponse
 from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.decorators import api_view, permission_classes
+from django.contrib.auth import authenticate, login,logout
 
-
+from rest_framework.authtoken.models import Token
+from rest_framework.authtoken.views import ObtainAuthToken
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
+from .utils import *
 class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
 
@@ -161,4 +167,56 @@ class ArticleList(generics.ListAPIView):
     serializer_class=ArticleSerializer
 
 
+
+class AuthenticationUser(ObtainAuthToken):
+
+
+    def post(self, request):
+        print(request.POST)
+        # return Response("heheh")
+        if request.user.is_authenticated:
+            print("is authenticated")
+            
+            return Response({"message":"this user is already logged in"},status=status.HTTP_201_CREATED)
+        # logout(request)
+        else:
+            
+            if "username" in request.POST:
+                username = request.POST["username"]
+                password = request.POST["password"]
+                
+                print(request.POST["username"])
+                print(request.data)
+
+                user = authenticate(request, username=username, password=password)
+                
+                serializer = self.serializer_class(data=request.data,
+                                           context={'request': request})
+                serializer.is_valid(raise_exception=True)
+                user = serializer.validated_data['user']
+                
+                token, created = Token.objects.get_or_create(user=user)
+               
+                current_date = datetime.now()
+                
+                if user is not None:
+                    # print(username.username)
+                    # login(request, user)
+                    u = User.objects.get(email=username)
+                    # profile = Profile.objects.get(user=u)
+                    
+                    print(u)
+                    # print(userFound)
+                    return Response({"message":"success","user":{
+                        'token': token.key,
+                        "username":u.username,"email":u.email,
+                        # "username":u.username,"county_string":profile.county_string,
+                        "time":current_date,
+                        "expires":add_time(f"{current_date}",1)
+                        }},status=status.HTTP_201_CREATED)
+        
+                else:
+                    return Response({"message":f"Error! Username and password does not match"}, status=status.HTTP_400_BAD_REQUEST)
+            else:
+                return Response({"message":"Username and password is required"},status=status.HTTP_400_BAD_REQUEST)       
 

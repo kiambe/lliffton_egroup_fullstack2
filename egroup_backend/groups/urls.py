@@ -31,6 +31,8 @@ urlpatterns = [
     path('test/', views.testEndPoint, name='test'),
     path('', views.getRoutes),
     path('stats/', views.StatsList.as_view(), name='stats'),
+    path('login/', views.AuthenticationUser.as_view(), name="login"),
+
     #path('vendor/<int:pk>/', views.VendorDetail.as_view(), name='vendor_details'),
     #path('list_members/', views.MemberList.as_view(), name='list_members'),
     #path('member/<int:pk>/', views.MemberDetail.as_view(), name='member_details'),
