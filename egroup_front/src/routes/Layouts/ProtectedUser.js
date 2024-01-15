@@ -41,8 +41,8 @@ function ProtectedUser() {
       {/* {JSON.stringify(loginUserState)} */}
       {loginUserState.loading && (
         <>
-          <div class="spinner-border spinner-border-md mt-3" role="status">
-            <span class="visually-hidden">Loading...</span>
+          <div className="spinner-border spinner-border-md mt-3" role="status">
+            <span className="visually-hidden">Loading...</span>
           </div>
         </>
       )}

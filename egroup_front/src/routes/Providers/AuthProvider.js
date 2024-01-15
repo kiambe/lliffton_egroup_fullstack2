@@ -6,7 +6,10 @@ import {
   getUserTokenOffline,
   logoutUser,
 } from "../../app-redux/features/appData/appDataSlice";
-import { getOfflineData, removeValueFromOffline } from "../../constants/OfflineStorage";
+import {
+  getOfflineData,
+  removeValueFromOffline,
+} from "../../constants/OfflineStorage";
 
 const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
@@ -48,37 +51,32 @@ const AuthProvider = ({ children }) => {
             dispatch(getUserOffline(res2))
               .unwrap()
               .then((res3) => {
-                if(res3){
+                if (res3) {
                   if (res3.user.hasOwnProperty("expires")) {
                     let expires = res3.user.expires;
                     let date1 = new Date(expires);
 
-
                     // console.log({date1})
 
-  
                     const date2 = new Date();
-                    console.log({date2,date1})
+                    // console.log({date2,date1})
 
-  
                     if (date2 > date1) {
-                      logout()
+                      logout();
 
                       // navigate(`/login`, { replace: true });
-
                     } else {
                       // console.log("zzzz")
                     }
                   } else {
-                    logout()
+                    logout();
 
                     // navigate(`/login`, { replace: true });
                   }
                 }
-               
               });
           });
-        
+
           if (!res) {
             dispatch(getUserTokenOffline(false));
 
@@ -88,10 +86,6 @@ const AuthProvider = ({ children }) => {
       }
     }, 2000);
   }, [offlineUserToken.userToken, location, loginUserState]);
-
-
-
-
 
   return <>{children}</>;
 };
