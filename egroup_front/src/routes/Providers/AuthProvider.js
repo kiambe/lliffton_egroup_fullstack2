@@ -54,10 +54,8 @@ const AuthProvider = ({ children }) => {
                
               });
           });
-          // dispatch(getUserOffline("@userData"))
-          // console.log({res})
+        
           if (!res) {
-            // alert(0)
             dispatch(getUserTokenOffline(false));
 
             navigate(`/login`, { replace: true });
@@ -65,46 +63,11 @@ const AuthProvider = ({ children }) => {
         });
       }
     }, 2000);
-    // dispatch(getUserTokenOffline("@isLoggedIn"));
-    // console.log(offlineUserToken.userToken)
   }, [offlineUserToken.userToken, location, loginUserState]);
 
-  useEffect(() => {
-    //get user from token if not null
-    // if (offlineUserToken.userToken !== null) {
-    if (loginUserState.isLoggedIn) {
-      // dispatch(getUserOffline("@userData"));
-    }
 
-    // !loginUserState.loading && dispatch(getUserOffline("@userData"));
-    // }
-  }, [offlineUserToken.userToken]);
 
-  useEffect(() => {
-    // if (loginUserState.isLoggedIn && !loginUserState.success) {
-    //     if (nextPage === null) {
-    //       if (pathname !== "/data/home") {
-    //         navigate(`${pathname}`, { replace: true });
-    //       } else {
-    //         navigate(`/data/home`, { replace: true });
-    //       }
-    //     } else {
-    //       navigate(`${nextPage}`, { replace: true });
-    //     }
-    // } else {
-    //   if (loginUserState.error !== "") {
-    //     navigate(pathname, { replace: true });
-    //   }else{
-    //     if(pathname === "/"){
-    //       if(loginUserState.isLoggedIn){
-    //         navigate("/data/home", { replace: true });
-    //       }else{
-    //         navigate("/login", { replace: true });
-    //       }
-    //   }
-    //   }
-    // }
-  }, [loginUserState]);
+
 
   return <>{children}</>;
 };
