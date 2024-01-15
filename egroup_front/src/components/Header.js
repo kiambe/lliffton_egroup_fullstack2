@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { removeValueFromOffline } from "../constants/OfflineStorage";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../app-redux/features/appData/appDataSlice";
@@ -7,18 +7,33 @@ import { logoutUser } from "../app-redux/features/appData/appDataSlice";
 function Header() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
+
+  let { pathname } = location;
 
   const appData = useSelector((state) => state.appData);
   let { loginUserState } = appData;
 
+  // console.log(pathname)
 
-  const logout = () => {
+  const logout = (nextPage=pathname) => {
+    console.log({nextPage})
+
     setTimeout(() => {
       removeValueFromOffline("@userData");
       removeValueFromOffline("@isLoggedIn");
       removeValueFromOffline("@isLoggedIn2");
       removeValueFromOffline("@userData2");
-      navigate(`/login`, { replace: true });
+      if(nextPage !== "/login"){
+        navigate(`/login?nextPage=${pathname}`, { replace: true });
+
+      }else{
+      navigate(`/login?nextPage=home`, { replace: true });
+
+      }
+
+      // navigate(`/login?nextPage=${nextPage}`, { replace: true });
+
       dispatch(logoutUser());
     }, 1000);
   };

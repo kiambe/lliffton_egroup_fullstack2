@@ -20,17 +20,12 @@ function ProtectedUser() {
     // check if user is logged in
     // if so, check if the path on url is /home, and navigate to the path
     if (loginUserState.isLoggedIn) {
-     
-
       if (location.pathname !== "/home") {
         // pathname
         navigate(`${location.pathname}`, { replace: true });
-      }
-      else if (location.pathname !== "/") {
+      } else if (location.pathname !== "/") {
         navigate(`/home`, { replace: true });
-
-      }
-      else {
+      } else {
         navigate(`/home`, { replace: true });
       }
     }

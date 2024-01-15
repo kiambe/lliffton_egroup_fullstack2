@@ -26,13 +26,20 @@ const AuthProvider = ({ children }) => {
   let { offlineUserToken } = appData;
   let { loginUserState } = appData;
 
-  const logout = () => {
+  const logout = (nextPage) => {
+    console.log({nextPage})
     setTimeout(() => {
       removeValueFromOffline("@userData");
       removeValueFromOffline("@isLoggedIn");
       removeValueFromOffline("@isLoggedIn2");
       removeValueFromOffline("@userData2");
-      navigate(`/login`, { replace: true });
+      if(nextPage !== "/login"){
+        navigate(`/login?nextPage=${nextPage}`, { replace: true });
+
+      }else{
+      navigate(`/login?nextPage=home`, { replace: true });
+
+      }
       dispatch(logoutUser());
     }, 1000);
   };
@@ -41,37 +48,26 @@ const AuthProvider = ({ children }) => {
     // Get the user offline token
     setTimeout(() => {
       if (!loginUserState.isLoggedIn) {
-        // alert(0)
-        // dispatch(getUserTokenOffline("@isLoggedIn"));
-        // console.log("getting user offline")
         let myoffline = getOfflineData("@isLoggedIn").then((res) => {
           dispatch(getUserTokenOffline(res));
-          // updateToken(res)
           getOfflineData("@userData").then((res2) => {
             dispatch(getUserOffline(res2))
               .unwrap()
               .then((res3) => {
                 if (res3) {
+                  // handle expiry of the token and time
                   if (res3.user.hasOwnProperty("expires")) {
                     let expires = res3.user.expires;
                     let date1 = new Date(expires);
 
-                    // console.log({date1})
-
                     const date2 = new Date();
-                    // console.log({date2,date1})
 
                     if (date2 > date1) {
-                      logout();
-
-                      // navigate(`/login`, { replace: true });
+                      logout(pathname);
                     } else {
-                      // console.log("zzzz")
                     }
                   } else {
-                    logout();
-
-                    // navigate(`/login`, { replace: true });
+                    logout(pathname);
                   }
                 }
               });
@@ -79,8 +75,15 @@ const AuthProvider = ({ children }) => {
 
           if (!res) {
             dispatch(getUserTokenOffline(false));
+            if(pathname !== "/login"){
+              navigate(`/login?nextPage=${pathname}`, { replace: true });
+      
+            }else{
+            navigate(`/login?nextPage=home`, { replace: true });
+      
+            }
 
-            navigate(`/login`, { replace: true });
+            // navigate(`/login?nextPage=${pathname}`, { replace: true });
           }
         });
       }
