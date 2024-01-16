@@ -1,4 +1,4 @@
-from accounts.models import *
+from groups.models import *
 
 
 

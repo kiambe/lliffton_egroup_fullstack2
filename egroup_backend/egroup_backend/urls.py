@@ -28,5 +28,5 @@ urlpatterns = [
     path('', include('groups.urls')),
     path('api/', include('groups.urls')),
     path('api-auth/', include('rest_framework.urls')),
-    #path('ussd/', include('appuser.urls')),
+    path('ussd/', include('appuser.urls')),
 ]

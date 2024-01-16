@@ -27,18 +27,16 @@ const AuthProvider = ({ children }) => {
   let { loginUserState } = appData;
 
   const logout = (nextPage) => {
-    console.log({nextPage})
+    console.log({ nextPage });
     setTimeout(() => {
       removeValueFromOffline("@userData");
       removeValueFromOffline("@isLoggedIn");
       removeValueFromOffline("@isLoggedIn2");
       removeValueFromOffline("@userData2");
-      if(nextPage !== "/login"){
+      if (nextPage !== "/login") {
         navigate(`/login?nextPage=${nextPage}`, { replace: true });
-
-      }else{
-      navigate(`/login?nextPage=home`, { replace: true });
-
+      } else {
+        navigate(`/login?nextPage=home`, { replace: true });
       }
       dispatch(logoutUser());
     }, 1000);
@@ -75,12 +73,10 @@ const AuthProvider = ({ children }) => {
 
           if (!res) {
             dispatch(getUserTokenOffline(false));
-            if(pathname !== "/login"){
+            if (pathname !== "/login") {
               navigate(`/login?nextPage=${pathname}`, { replace: true });
-      
-            }else{
-            navigate(`/login?nextPage=home`, { replace: true });
-      
+            } else {
+              navigate(`/login?nextPage=home`, { replace: true });
             }
 
             // navigate(`/login?nextPage=${pathname}`, { replace: true });

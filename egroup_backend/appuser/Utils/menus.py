@@ -1,5 +1,5 @@
 from appuser.Utils import constants
-from accounts.Utils.database_queries import *
+from groups.Utils.database_queries import *
 
 from .sms_module import App_SMS
 from .utils import *

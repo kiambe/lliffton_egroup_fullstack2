@@ -3,7 +3,7 @@ import json
 
 import requests
 from appuser.Utils import constants
-from accounts.models import *
+from groups.models import *
 
 from appuser.models import *
 import random

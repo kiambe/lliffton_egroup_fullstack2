@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
 
-    #'appuser',
+    'appuser',
     'groups',
     'management',
     'vendors',
