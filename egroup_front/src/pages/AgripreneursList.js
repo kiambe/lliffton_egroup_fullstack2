@@ -10,7 +10,7 @@ function AgripreneursList() {
   const [members, setMembers] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:8000/api/list_members/")
+      .get(process.env.REACT_APP_LIST_MEMBERS_URL)
       .then((res) => setMembers(res.data.results))
       .catch((err) => console.log(err));
   }, []);

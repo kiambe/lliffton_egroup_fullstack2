@@ -1,13 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { AxiosPostService } from "../../../constants/AxiosServices";
 
-let URL = "http://127.0.0.1:8000/";
+
 
 export const loginUser = createAsyncThunk(
   "appDataSlice/loginUser",
   async (data, { rejectWithValue }) => {
     try {
-      let url = `${URL}api/login/`;
+      let url = `${process.env.REACT_APP_LOGIN_URL}`;
       // console.log(data)
       console.log({url})
 
