@@ -12,7 +12,7 @@ WorkingDirectory=/root/Projects/lliffton_egroup_fullstack2/egroup_backend
 ExecStart=/root/Projects/venv/bin/gunicorn \
           --access-logfile - \
           --workers 3 \
-          --bind unix:/run/egroup.sock \
+          --bind unix:/root/Projects/egroup_backend.sock \
           egroup_backend.wsgi:application
 
 [Install]
