@@ -173,8 +173,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ALLOW_CREDENTIALS = False
 CORS_ALLOW_HEADERS = ["*"]
 # CSRF_TRUSTED_ORIGINS
-CORS_ORIGIN_WHITELIST=['http://127.0.0.1:3000','http://localhost:3000','http://127.0.0.1','http://164.92.88.33','http://164.92.88.33','http://e-group.llifftonanalytica.com','http://138.197.80.186','https://138.197.80.186']
-CSRF_TRUSTED_ORIGINS=['http://127.0.0.1:3000','http://localhost:3000','http://127.0.0.1','http://164.92.88.33','http://164.92.88.33','http://e-group.llifftonanalytica.com','http://138.197.80.186/','https://138.197.80.186']
+CORS_ORIGIN_WHITELIST=['http://127.0.0.1:3000','http://localhost:3000','http://127.0.0.1','http://164.92.88.33','http://164.92.88.33','http://e-group.llifftonanalytica.com','http://138.197.80.186','http://138.197.80.186/','https://138.197.80.186']
+CSRF_TRUSTED_ORIGINS=['http://127.0.0.1:3000','http://localhost:3000','http://127.0.0.1','http://164.92.88.33','http://164.92.88.33','http://e-group.llifftonanalytica.com','http://138.197.80.186','http://138.197.80.186/','https://138.197.80.186']
 
 
 AUTH_USER_MODEL = 'groups.User'
