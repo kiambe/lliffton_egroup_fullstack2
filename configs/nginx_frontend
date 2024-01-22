@@ -3,7 +3,7 @@ server{
         server_name 127.0.0.1;
 
 
-        root /root/Projects/lliffton_egroup_fullstack2/egroup_front/build;
+        root /root/Projects/lliffton_egroup_fullstack2/egroup_front/appbuild;
         index index.html;
         location /{
                 try_files $uri /index.html =404;
