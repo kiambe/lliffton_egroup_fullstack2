@@ -27,7 +27,7 @@ class RegisterView(generics.CreateAPIView):
     permission_classes = (AllowAny,)
     serializer_class = RegisterSerializer
 
-
+from .onboarding import *
 # Get All Routes
 
 @api_view(['GET'])
@@ -220,3 +220,8 @@ class AuthenticationUser(ObtainAuthToken):
             else:
                 return Response({"message":"Username and password is required"},status=status.HTTP_400_BAD_REQUEST)       
 
+
+# create_mentor_users()
+# update_mentor_profile()
+# create_mentor_vendor()
+            

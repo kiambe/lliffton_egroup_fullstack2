@@ -15,6 +15,44 @@ BOOL_CHOICES = (
     ("NO", "No"),
     ("YES", "Yes")
 )
+GENDER_CHOICES = (
+    ("MALE", "Male"),
+    ("FEMALE", "Female"),
+)
+
+# Poultry tomato Groundnuts  African Leafy vegetable 
+
+VALUE_CHAIN_CHOICES = (
+    ("POULTRY", "Poultry"),
+    ("TOMATO", "tomato"),
+    ("GROUNDNUTS", "Groundnuts "),
+    ("AFRICAN LEAFY VEGETABLE", "African Leafy vegetable "),
+    ("SOYABEAN", "Soyabean"),
+)
+
+
+
+VALUE_CHAIN_LEVEL_CHOICES = (
+    ("PRODUCTION", "Production"),
+    ("AGGREGATION", "Agregation"),
+    ("DISTRIBUTOR", "Distributor"),
+    ("FARM SERVICES", "Farm Services"),
+    ("INPUT DISTRIBUTOR", "Input Disttibutor"),
+    ("PRODUCTION", "Production"),
+    ("VALUE ADDITION", "Value Addition"),
+
+)
+
+BUSINESS_TYPES_CHOICES = (
+    ("COOPERATIVE", "Coperative"),
+    ("GENERAL FARMING", "General Farming"),
+    ("OTHERS", "Others"),
+    ("PARTNERSHIP", "Farm Services"),
+    ("SOLE PROPRIETOR", "Sole Proprietor"),
+
+)
+
+
 class County(models.Model):    
   id = models.AutoField(primary_key=True)
   name = models.CharField(max_length=256, null=True) 
@@ -51,7 +89,6 @@ class Ward(models.Model):
         return '%s' % self.name
 
 
-
 class User(AbstractUser):
     username = models.CharField(max_length=100)
     email = models.EmailField(unique=True)
@@ -61,14 +98,13 @@ class User(AbstractUser):
         profile = Profile.objects.get(user=self)
   
 
-
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE,null=True, blank=True)
     fullname = models.CharField(max_length=length,null=True, blank=True) 
     national_id = models.CharField(max_length=length,null=True, blank=True)
     bio = models.CharField(max_length=100,null=True, blank=True)  
-    gender = models.CharField(max_length=10,null=True, blank=True)
-    year_of_birth = models.IntegerField(null=True, blank=True, default=1990)
+    gender = models.CharField(max_length=10,null=True, blank=True,choices=GENDER_CHOICES)
+    age_group = models.CharField(max_length=100,null=True, blank=True)  
     is_an_group_admin = models.CharField(max_length=length,null=True, blank=True, choices=BOOL_CHOICES)
     is_agripreneur = models.CharField(max_length=length,null=True, blank=True, default="Yes", choices=BOOL_CHOICES)
     is_vendor = models.CharField(max_length=length,null=True, blank=True, default="No", choices=BOOL_CHOICES)
@@ -96,7 +132,15 @@ post_save.connect(save_user_profile, sender=User)
 
 class Vendor(models.Model):
     user=models.ForeignKey(User, on_delete=models.CASCADE)
+
+    county = models.ForeignKey(County, on_delete=models.CASCADE,null=True, blank=True)
+    subcounty = models.ForeignKey(SubCounty, on_delete=models.CASCADE,null=True, blank=True)
     ward_id = models.ForeignKey(Ward, on_delete=models.CASCADE,null=True, blank=True)
+    value_chain = models.CharField(max_length=length,null=True, blank=True,choices=VALUE_CHAIN_CHOICES,default="PRODUCTION")
+    value_chain_level = models.CharField(max_length=length,null=True, blank=True,choices=VALUE_CHAIN_LEVEL_CHOICES)
+    business_type = models.CharField(max_length=length,null=True, blank=True,choices=BUSINESS_TYPES_CHOICES)
+
+
     business_name = models.CharField(max_length=length,null=True, blank=True, unique=True)
     shopping_centre_name = models.CharField(max_length=length,null=True, blank=True)
     contact_person_name = models.CharField(max_length=length,null=True, blank=True)
@@ -298,13 +342,10 @@ class LoanReminder(models.Model):
 
 
 
-
-
-
 class Product(models.Model):
     vendor_id = models.ForeignKey(Vendor, on_delete=models.CASCADE,null=True, blank=True)
     name = models.CharField(max_length=length,null=True, blank=True)
-    category = models.CharField(max_length=length,null=True, blank=True)
+    category = models.CharField(max_length=length,null=True, blank=True) # if it is value a
     retail_price = models.FloatField( validators=[MinValueValidator(0.0), MaxValueValidator(99999999.9)], default=0.0)
     wholesale_price = models.FloatField( validators=[MinValueValidator(0.0), MaxValueValidator(999999999.9)], default=0.0)
     photo = models.ImageField(upload_to='Products', default='default.png',null=True, blank=True)
@@ -314,9 +355,6 @@ class Product(models.Model):
 
     def __str__(self):
         return '%s' % self.name
-    
-    
-
     
 
 class Article(models.Model):
