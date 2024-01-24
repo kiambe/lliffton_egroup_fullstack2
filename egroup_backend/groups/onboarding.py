@@ -4,8 +4,7 @@ from .models import *
 
 # user = User.objects.create_user("john", "lennon@thebeatles.com", "johnpassword")
 # user.save()
-file_dir = "/root/Projects/lliffton_egroup_fullstack2/egroup_backend/mentors.csv"
-
+file_dir = "/root/Projects/lliffton_egroup_fullstack2/egroup_backend/groups/mentors.csv"
 df = pd.read_csv(file_dir)
 
 
