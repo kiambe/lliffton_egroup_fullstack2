@@ -86,7 +86,7 @@ def update_mentor_profile():
             #                 )
             # vendor.save()
             
-            print(f"Created VENDOR user {name} with email {email}")
+            print(f"Updating mentor profile : user {name} with email {email}")
         except Exception as e:
             print(f"Error {e}")
         
