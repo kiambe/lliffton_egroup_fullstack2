@@ -221,7 +221,16 @@ class AuthenticationUser(ObtainAuthToken):
                 return Response({"message":"Username and password is required"},status=status.HTTP_400_BAD_REQUEST)       
 
 
-create_mentor_users()
-update_mentor_profile()
-create_mentor_vendor()
+# create_mentor_users()
+try:            
+    update_mentor_profile()
+except Exception as e:
+    print(e)
+
+try:            
+    create_mentor_vendor()
+except Exception as e:
+    print(e)
+
+
             
