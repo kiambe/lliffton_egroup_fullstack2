@@ -120,7 +120,7 @@ function AgripreneursList() {
                         </div>
                       </td>
                       <td>{member.gender}</td>
-                      <td>{member.year_of_birth}</td>
+                      <td>{member.age_group}</td>
                       <td>{member.ward_id}</td>
                       <td>{member.physical_address}</td>
                       <td>

@@ -44,7 +44,7 @@ function MemberAdd() {
       alternative_phone_number: member.alternative_phone_number,
       alternative_phone_number_provider:
         member.alternative_phone_number_provider,
-      year_of_birth: member.year_of_birth,
+        age_group: member.age_group,
       gender: member.gender,
       ward_id: member.ward_id,
     };
@@ -69,7 +69,7 @@ function MemberAdd() {
           alternative_phone_number: response.data.alternative_phone_number,
           alternative_phone_number_provider:
             response.data.alternative_phone_number_provider,
-          year_of_birth: response.data.year_of_birth,
+            age_group: response.data.age_group,
           gender: response.data.gender,
           ward_id: response.data.ward_id,
         });
@@ -360,7 +360,7 @@ function MemberAdd() {
                           </label>
                           <input
                             type="number"
-                            value={member.year_of_birth}
+                            value={member.age_group}
                             onChange={handlelMemberChange}
                             name="year_of_birth"
                             className="form-control"

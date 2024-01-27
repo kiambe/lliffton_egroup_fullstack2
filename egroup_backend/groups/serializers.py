@@ -24,7 +24,7 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
         token['email'] = user.email
         token['national_id'] = user.profile.national_id
         token['gender'] = user.profile.gender
-        token['year_of_birth'] = user.profile.year_of_birth
+        token['age_group'] = user.profile.age_group
         token['is_an_group_admin'] = user.profile.is_an_group_admin
         token['is_agripreneur'] = user.profile.is_agripreneur
         token['is_vendor'] = user.profile.is_vendor

@@ -207,7 +207,7 @@ function MemberList() {
                       <td>{member.email}</td>
                       <td>{member.is_an_group_admin}</td>
                       <td>{member.primary_phone_number}</td>
-                      <td>{member.year_of_birth}</td>
+                      <td>{member.age_group}</td>
                       <td>{member.ward_id}</td>
                       <td>
                         <span className="badge bg-light-success text-success w-100">

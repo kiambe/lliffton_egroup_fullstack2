@@ -57,7 +57,7 @@ function MemberUpdate() {
           alternative_phone_number: response.data.alternative_phone_number,
           alternative_phone_number_provider:
             response.data.alternative_phone_number_provider,
-          year_of_birth: response.data.year_of_birth,
+            age_group: response.data.age_group,
           gender: response.data.gender,
           ward_id: response.data.ward_id,
         });
@@ -80,7 +80,7 @@ function MemberUpdate() {
       alternative_phone_number: currentMember.alternative_phone_number,
       alternative_phone_number_provider:
         currentMember.alternative_phone_number_provider,
-      year_of_birth: currentMember.year_of_birth,
+        age_group: currentMember.age_group,
       gender: currentMember.gender,
       ward_id: currentMember.ward_id,
     };
@@ -104,7 +104,7 @@ function MemberUpdate() {
           alternative_phone_number: response.data.alternative_phone_number,
           alternative_phone_number_provider:
             response.data.alternative_phone_number_provider,
-          year_of_birth: response.data.year_of_birth,
+            age_group: response.data.age_group,
           gender: response.data.gender,
           ward_id: response.data.ward_id,
         });
@@ -395,7 +395,7 @@ function MemberUpdate() {
                           </label>
                           <input
                             type="number"
-                            value={currentMember.year_of_birth}
+                            value={currentMember.age_group}
                             onChange={handleMemberChange}
                             name="year_of_birth"
                             className="form-control"
