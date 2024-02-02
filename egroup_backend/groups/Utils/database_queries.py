@@ -38,7 +38,7 @@ def Put_Groups_to_String(member_id):
     
     for x in member_groups:
         my_object= {
-            "id":x["group_id"],
+            "id":x["id"],
             "group_name":x['group_name'],
             "group_code":x['group_code'],
             
