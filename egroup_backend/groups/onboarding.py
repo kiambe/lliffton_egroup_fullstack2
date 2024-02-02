@@ -133,7 +133,7 @@ def create_mentor_vendor():
             user = User.objects.get(email=email,username=name)
 
             # ADD VENDOR
-            vendor = Vendor(user=user,business_name=name, contact_person_name=name,contact_person_phone=phone,
+            vendor = Vendor(user=user, contact_person_name=name,contact_person_phone=phone,
                             county=county_object,subcounty=scounty_object,value_chain=value_chain,
                             value_chain_level=value_chain_level,business_type=business_type
                             )
