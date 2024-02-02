@@ -38,9 +38,9 @@ def Put_Groups_to_String(member_id):
     
     for x in member_groups:
         my_object= {
-            "id":x["id"],
-            "group_name":x['name'],
-            "group_code":x['special_code'],
+            "id":x["group"],
+            "group_name":x['group'],
+            # "group_code":x['group_code'],
             
         }
         
@@ -60,7 +60,7 @@ def Put_Groups_to_String(member_id):
 
     for idx, val in enumerate(groups):
         group_db_id = val['id']
-        group_code=val['group_code']
+       
         group_name=val['group_name']
         
         group_rep_id_plus_id.append({"rep_id": idx+1, "id": group_db_id})
