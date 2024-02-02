@@ -109,6 +109,17 @@ class GroupMemberSerializer(serializers.ModelSerializer):
         fields = '__all__'
         depth=1
 
+class GroupMembersSerializer(serializers.ModelSerializer):
+    member_name = serializers.ReadOnlyField(
+        source='member.name')
+    group_name = serializers.ReadOnlyField(
+        source='group.name')
+    group_code = serializers.ReadOnlyField(
+        source='group_id.special_code')
+    
+    class Meta:
+        model = models.GroupMembers
+        fields = ('id',"member","group","group_name","member_name","group_code",)
 
 
 class MemberTrainingSerializer(serializers.ModelSerializer):

@@ -20,7 +20,7 @@ def get_member_details_from_phone(phone_number="254791836987"):
 def get_member_groups(member_id):
     try:
         groups = GroupMembers.objects.filter(member_id=member_id)
-        serializer_groups = GroupMemberSerializer(groups,many=True).data
+        serializer_groups = GroupMembersSerializer(groups,many=True).data
         
         return serializer_groups
     except:
@@ -33,13 +33,17 @@ def Put_Groups_to_String(member_id):
     groups = []
     member_groups = get_member_groups(member_id=member_id)
     
+    # print(member_groups)
+
+    # return None
     if member_groups == None:
         return None
     
     for x in member_groups:
+        # print(f"x ======{x['group']}")
         my_object= {
             "id":x["group"],
-            "group_name":x['group'],
+            "group_name":x['group_name'],
             # "group_code":x['group_code'],
             
         }
@@ -60,7 +64,7 @@ def Put_Groups_to_String(member_id):
 
     for idx, val in enumerate(groups):
         group_db_id = val['id']
-       
+        # group_code=val['group_code']
         group_name=val['group_name']
         
         group_rep_id_plus_id.append({"rep_id": idx+1, "id": group_db_id})

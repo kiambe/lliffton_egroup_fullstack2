@@ -118,9 +118,9 @@ def response_menu_want_to_save_yes_amount(custom_text_two,member_id,phone_number
         # send sms here
         msg = None
         
-        if member_object.first_name != None:
+        if member_object.fullname != None:
         
-            msg = f"Dear {member_object.first_name}, You have saved KSH {amount} for group {group_name}"
+            msg = f"Dear {member_object.fullname}, You have saved KSH {amount} for group {group_name}"
         else:
             msg = f"You have succcessfully saved KSH {amount} for group {group_name}"
             
