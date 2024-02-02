@@ -27,7 +27,7 @@ class RegisterView(generics.CreateAPIView):
     permission_classes = (AllowAny,)
     serializer_class = RegisterSerializer
 
-# from .onboarding import *
+from .onboarding import *
 # Get All Routes
 
 @api_view(['GET'])
@@ -222,15 +222,15 @@ class AuthenticationUser(ObtainAuthToken):
 
 
 # create_mentor_users()
-# try:            
-#     update_mentor_profile()
-# except Exception as e:
-#     print(e)
+try:            
+    update_mentor_profile()
+except Exception as e:
+    print(e)
 
-# try:            
-#     create_mentor_vendor()
-# except Exception as e:
-#     print(e)
+try:            
+    create_mentor_vendor()
+except Exception as e:
+    print(e)
 
 
             
